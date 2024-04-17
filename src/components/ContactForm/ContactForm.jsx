@@ -1,9 +1,9 @@
 import { Formik, Form, Field, ErrorMessage} from 'formik'
 import * as yup from 'yup' 
 import css from './ContactForm.module.css'
-// import {nanoid} from 'nanoid'
 import { useDispatch } from 'react-redux'
-import { addContact } from '../../redux/contactsSlice'
+import { addContact } from '../../redux/contactsOps'
+
 
 const SignupSchema = yup.object().shape({
   name: yup.string().trim()
@@ -49,7 +49,7 @@ function submit(data, actions){
 
         <div  className={css.inputBlock}>
         <label htmlFor="number" className={css.label}>number</label>
-        <Field className={css.input} id="number" name="number" placeholder="Please enter a phone number" type="number" />
+        <Field className={css.input} id="number" name="number" placeholder="Please enter a phone number" type="text" />
         <ErrorMessage className={css.error} name="number" component="span"/>
         </div>
     

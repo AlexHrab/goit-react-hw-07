@@ -4,40 +4,33 @@ import './App.css'
 import ContactList from './components/ContaktList/ContactList'
 import SearchBox from './components/SearchBox/SearchBox'
 import ContactForm from './components/ContactForm/ContactForm'
-
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { selectIsLoading } from './redux/contactsSlice'
+import { fetchContacts } from './redux/contactsOps'
+import { Loader } from './components/Loader/Loader'
 
 
 function App() {
 
-  // const[contacts, setContacts] = useState(() =>
-  //  {const saveContacts = JSON.parse(window.localStorage.getItem("savedContacts"))
-  // return saveContacts || data
-  // })
-  // const[searchName, setSearchName] = useState('')
-  
-  
-  // useEffect(() => {window.localStorage.setItem("savedContacts", JSON.stringify(contacts))}, [contacts])
+  const dispatch = useDispatch()
 
-  
+  useEffect(() => {
+    dispatch(fetchContacts())
+  }, [dispatch])
 
-  // function handleDelContact(id){
-  //   setContacts(contacts.filter(contact => contact.id !== id))
-  // }
-
-  // function getName(){
-  //  return contacts.filter(contact => contact.name.toLowerCase().includes(searchName.toLowerCase()))
-  // }
-
-  // const newContacts = getName()
+  const isLoading = useSelector(selectIsLoading)
 
  return (
-  <div>
+  <div className='main'>
     <div className='forms'>
     <h1 className='phonebook'>Phonebook</h1>
     <ContactForm/>
     <SearchBox />
     </div>
+    {isLoading && <Loader className='loader'/>}
 <ContactList/>
+
   </div>
  )
 }

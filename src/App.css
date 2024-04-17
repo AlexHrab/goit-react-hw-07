@@ -22,3 +22,11 @@ margin: 0;
 color: white;
 }
 
+.main{
+  display: flex;
+}
+
+.loader{
+  background-color: #0093E9;
+  
+}
